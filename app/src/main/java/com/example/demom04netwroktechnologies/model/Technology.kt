@@ -1,14 +1,15 @@
 package com.example.demom04netwroktechnologies.model
 
+import com.google.gson.annotations.SerializedName
 
 
 data class Technology(
-//    @SerializedName("id")
+    @SerializedName("id")
     val id: String,
-//    @SerializedName("name")
+    @SerializedName("name")
     val name: String,
-//    @SerializedName("description")
+    @SerializedName("description")
     val description: String,
-//    @SerializedName("imageUrl")
+    @SerializedName("imageUrl")
     val imageUrl: String
 )

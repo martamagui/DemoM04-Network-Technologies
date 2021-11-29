@@ -11,8 +11,9 @@ import com.example.demom04netwroktechnologies.extension.imageUrl
 import com.example.demom04netwroktechnologies.model.Technology
 import com.squareup.picasso.Picasso
 
-class TechnologyAdpter :
+class TechnologyAdpter(private val onTechClicked: (Technology)-> Unit) :
     ListAdapter<Technology, TechnologyAdpter.ViewHolder>(TechnologyItemCallBack()) {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -29,6 +30,9 @@ class TechnologyAdpter :
             tvName.text = technology.name
             tvDescription.text = technology.description
             ivTech.imageUrl(technology.imageUrl)
+            holder.binding.root.setOnClickListener {
+                onTechClicked(technology)
+            }
         }
 
 
