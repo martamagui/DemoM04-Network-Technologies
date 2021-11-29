@@ -2,11 +2,14 @@ package com.example.demom04netwroktechnologies
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demom04netwroktechnologies.databinding.ItemTechnologyBinding
+import com.example.demom04netwroktechnologies.extension.imageUrl
 import com.example.demom04netwroktechnologies.model.Technology
+import com.squareup.picasso.Picasso
 
 class TechnologyAdpter :
     ListAdapter<Technology, TechnologyAdpter.ViewHolder>(TechnologyItemCallBack()) {
@@ -18,10 +21,17 @@ class TechnologyAdpter :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val technology =  getItem(position)
-        holder.binding.tvName.text = technology.name
-        holder.binding.tvDescription.text = technology.description
-        
+        val technology = getItem(position)
+        //        holder.binding.tvName.text = technology.name
+        //        holder.binding.tvDescription.text = technology.description
+        //        holder.binding.ivTech.imageUrl(technology.imageUrl)
+        with(holder.binding) {
+            tvName.text = technology.name
+            tvDescription.text = technology.description
+            ivTech.imageUrl(technology.imageUrl)
+        }
+
+
     }
 
     inner class ViewHolder(val binding: ItemTechnologyBinding) :
