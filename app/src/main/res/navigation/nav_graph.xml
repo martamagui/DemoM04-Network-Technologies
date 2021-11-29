@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/technologyListFragment">
+
+    <fragment
+        android:id="@+id/technologyListFragment"
+        android:name="com.example.demom04netwroktechnologies.TechnologyListFragment"
+        android:label="fragment_technology_list"
+        tools:layout="@layout/fragment_technology_list" >
+        <action
+            android:id="@+id/action_technologyListFragment_to_technologyDetailFragment"
+            app:destination="@id/technologyDetailFragment" />
+        <action
+            android:id="@+id/action_technologyListFragment_to_technologyAddFragment"
+            app:destination="@id/technologyAddFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/technologyAddFragment"
+        android:name="com.example.demom04netwroktechnologies.TechnologyAddFragment"
+        android:label="fragment_technology_add"
+        tools:layout="@layout/fragment_technology_add" />
+    <fragment
+        android:id="@+id/technologyDetailFragment"
+        android:name="com.example.demom04netwroktechnologies.TechnologyDetailFragment"
+        android:label="fragment_technology_detail"
+        tools:layout="@layout/fragment_technology_detail" >
+        <argument
+            android:name="techId"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+</navigation>
