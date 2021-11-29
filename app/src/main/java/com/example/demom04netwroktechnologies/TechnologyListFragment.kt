@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.demom04netwroktechnologies.databinding.FragmentTechnologyListBinding
+import com.example.demom04netwroktechnologies.model.Technology
 
 
 class TechnologyListFragment : Fragment() {
@@ -27,6 +28,12 @@ class TechnologyListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configUI()
+        val techList :  MutableList<Technology> = mutableListOf()
+        for (i in 1..10){
+            val tech = Technology(i.toString(),"Tech $i","Description $i", "a")
+            techList.add(tech)
+        }
+        adapter.submitList(techList)
     }
     private fun configUI(){
         binding.fabAddTech.setOnClickListener {
