@@ -5,13 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.demom04netwroktechnologies.databinding.FragmentTechnologyAddBinding
 import com.example.demom04netwroktechnologies.databinding.FragmentTechnologyListBinding
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 
 class TechnologyAddFragment : Fragment() {
@@ -26,6 +22,42 @@ class TechnologyAddFragment : Fragment() {
         _binding = FragmentTechnologyAddBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.btnAddTechonology.setOnClickListener {
+            binding.etTechName.error = null
+            if (validateFields()) {
+                sendTechnologyToServer()
+            }
+        }
+    }
+
+    private fun sendTechnologyToServer() {
+
+    }
+
+    private fun validateFields(): Boolean {
+//        binding.etTechName.error = null
+        val techName = binding.etTechName.text.toString()
+        val techDescription = binding.etTechDescription.text.toString()
+
+        if (techName.isEmpty()) {
+//            binding.etTechName.error = "TechName is empty."
+            showError("TechName is empty.")
+            return false
+        }
+        if (techDescription.isEmpty()) {
+            showError("TechDescription is empty.")
+            return false
+        }
+        return true
+    }
+
+    private fun showError(error: String) {
+        Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

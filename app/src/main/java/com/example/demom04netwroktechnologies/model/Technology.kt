@@ -11,5 +11,5 @@ data class Technology(
     @SerializedName("description")
     val description: String,
     @SerializedName("imageUrl")
-    val imageUrl: String
+    val imageUrl: String? = null
 )

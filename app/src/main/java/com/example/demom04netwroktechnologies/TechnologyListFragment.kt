@@ -47,7 +47,7 @@ class TechnologyListFragment : Fragment() {
 
     private fun requestData() {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://10.1.204.118:3000/")
+            .baseUrl("https://10.1.200.149:3000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         val service = retrofit.create(TechnologyServiice::class.java)
