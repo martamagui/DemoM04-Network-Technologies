@@ -2,19 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/nav_tech"
+        android:id="@+id/technologyListFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_blur_on_24"
-        android:title="Technology1"/>
+        android:title="Technology"/>
     <item
-        android:id="@+id/nav_tech2"
+        android:id="@+id/imageListFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_blur_on_24"
-        android:title="Technology2"/>
-    <item
-        android:id="@+id/nav_tech3"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_blur_on_24"
-        android:title="Technology3"/>
+        android:icon="@drawable/ic_baseline_image_24"
+        android:title="Images" />
 
 </menu>

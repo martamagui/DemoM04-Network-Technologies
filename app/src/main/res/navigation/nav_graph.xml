@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_technologyListFragment_to_technologyAddFragment"
             app:destination="@id/technologyAddFragment" />
+        <action
+            android:id="@+id/action_technologyListFragment_to_imageListFragment"
+            app:destination="@id/imageListFragment" />
     </fragment>
     <fragment
         android:id="@+id/technologyAddFragment"
@@ -32,4 +35,9 @@
             app:argType="string"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/imageListFragment"
+        android:name="com.example.demom04netwroktechnologies.ImageListFragment"
+        android:label="fragment_image_list"
+        tools:layout="@layout/fragment_image_list" />
 </navigation>
