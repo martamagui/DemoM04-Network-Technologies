@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/nav_tech"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_blur_on_24"
+        android:title="Technology1"/>
+    <item
+        android:id="@+id/nav_tech2"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_blur_on_24"
+        android:title="Technology2"/>
+    <item
+        android:id="@+id/nav_tech3"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_blur_on_24"
+        android:title="Technology3"/>
+
 </menu>
