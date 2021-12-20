@@ -6,18 +6,22 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demom04netwroktechnologies.databinding.ItemImageBinding
+import com.example.demom04netwroktechnologies.extension.imageUrl
 import com.example.demom04netwroktechnologies.model.Image
 
-class ImageAdapter : ListAdapter<Image, ImageAdapter.ViewHolder>(ImageItemCallback()) {
+class ImageAdapter(private val ImageClickedListener: (Image) -> Unit) : ListAdapter<Image, ImageAdapter.ViewHolder>(ImageItemCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = ItemImageBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val image = getItem(position)
+        holder.binding.ivTechOnList.imageUrl(image.imageUrl)
+        holder.binding.root.setOnClickListener {
+            ImageClickedListener(image)
+        }
 
     }
 
