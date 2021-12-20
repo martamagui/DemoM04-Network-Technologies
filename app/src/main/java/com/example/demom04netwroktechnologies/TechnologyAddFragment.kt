@@ -7,8 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.demom04netwroktechnologies.databinding.FragmentTechnologyAddBinding
 import com.example.demom04netwroktechnologies.databinding.FragmentTechnologyListBinding
+import com.example.demom04netwroktechnologies.model.Image
 import com.example.demom04netwroktechnologies.model.Technology
 import com.example.demom04netwroktechnologies.network.SingeltonTechnologyApi
 import com.example.demom04netwroktechnologies.network.TechnologyServiice
@@ -24,7 +27,10 @@ class TechnologyAddFragment : Fragment() {
     private var _binding: FragmentTechnologyAddBinding? = null
     private val binding
         get() = _binding!!
-
+    val adapter = ImageAdapter{
+        imgUrl = it.imageUrl
+    }
+    private var imgUrl = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,13 +47,30 @@ class TechnologyAddFragment : Fragment() {
                 sendTechnologyToServer()
             }
         }
+        binding.rvImages.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        binding.rvImages.adapter = adapter
+        requestImageList()
+    }
+
+    private fun requestImageList() {
+        SingeltonTechnologyApi.service.getImages().enqueue(object : Callback<List<Image>> {
+            override fun onResponse(call: Call<List<Image>>, response: Response<List<Image>>) {
+                adapter.submitList(response.body())
+            }
+
+            override fun onFailure(call: Call<List<Image>>, t: Throwable) {
+                Toast.makeText(context, "Error en la conexion", Toast.LENGTH_SHORT).show()
+                Log.e("requestData", "error", t)
+            }
+
+        })
     }
 
     private fun sendTechnologyToServer() {
 
         val techName = binding.etTechName.text.toString()
         val techDescription = binding.etTechDescription.text.toString()
-        val techRequest = TechnologyRequest(techName, techDescription)
+        val techRequest = TechnologyRequest(techName, techDescription, imgUrl)
         SingeltonTechnologyApi.service.createTechnology(techRequest)
             .enqueue(object : Callback<Any> {
                 override fun onResponse(
@@ -62,7 +85,6 @@ class TechnologyAddFragment : Fragment() {
                         Log.e("requestData", "error en la respuesta: $code <> $message")
                     }
                 }
-
                 override fun onFailure(call: Call<Any>, t: Throwable) {
                     Toast.makeText(context, "Error en la conexion", Toast.LENGTH_SHORT).show()
                     Log.e("requestData", "error", t)
@@ -75,7 +97,6 @@ class TechnologyAddFragment : Fragment() {
 //        binding.etTechName.error = null
         val techName = binding.etTechName.text.toString()
         val techDescription = binding.etTechDescription.text.toString()
-
         if (techName.isEmpty()) {
 //            binding.etTechName.error = "TechName is empty."
             showError("TechName is empty.")
@@ -85,6 +106,7 @@ class TechnologyAddFragment : Fragment() {
             showError("TechDescription is empty.")
             return false
         }
+
         return true
     }
 
